@@ -1,2 +1,21 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import GameGrid from './GameGrid.svelte';
+	import Score from './Score.svelte';
+</script>
+
+<div class="page-wrapper">
+	<GameGrid />
+	<Score />
+</div>
+
+<style>
+	:global(body) {
+		background: rgb(70, 56, 150);
+		font-family: 'Open Sans', sans serif;
+	}
+
+	.page-wrapper {
+		display: flex;
+		justify-content: center;
+	}
+</style>
