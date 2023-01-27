@@ -2,8 +2,8 @@
 	export let value: String;
 </script>
 
-<div class="cell">
-	{'A'}
+<div class="cell" on:click>
+	{value}
 </div>
 
 <style>

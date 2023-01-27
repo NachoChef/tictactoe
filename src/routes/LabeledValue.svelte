@@ -16,9 +16,13 @@
 <style>
 	.display {
 		background-color: var(--color);
-		height: 40px;
+		height: 35px;
 		width: 60px;
 		border-radius: 4px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
 	}
 
 	.label {
