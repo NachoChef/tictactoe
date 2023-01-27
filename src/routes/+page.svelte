@@ -1,11 +1,15 @@
 <script>
+	import Controls from './Controls.svelte';
 	import GameGrid from './GameGrid.svelte';
-	import Score from './Score.svelte';
+	import ScoreCard from './ScoreCard.svelte';
+
+	let playerTurn = true;
 </script>
 
 <div class="page-wrapper">
-	<GameGrid />
-	<Score />
+	<Controls {playerTurn} />
+	<GameGrid bind:playerTurn />
+	<ScoreCard />
 </div>
 
 <style>
@@ -16,6 +20,7 @@
 
 	.page-wrapper {
 		display: flex;
-		justify-content: center;
+		align-items: center;
+		flex-direction: column;
 	}
 </style>

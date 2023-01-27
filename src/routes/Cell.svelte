@@ -1,9 +1,15 @@
 <script lang="ts">
+	import AlphaX from 'svelte-material-icons/AlphaX.svelte';
+	import AlphaO from 'svelte-material-icons/AlphaO.svelte';
 	export let value: String;
 </script>
 
 <div class="cell" on:click>
-	{value}
+	{#if value == 'x'}
+		<AlphaX size="2em" />
+	{:else if value == 'o'}
+		<AlphaO size="2em" />
+	{:else}{/if}
 </div>
 
 <style>
