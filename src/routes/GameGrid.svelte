@@ -1,14 +1,80 @@
 <script lang="ts">
+	import { checkForWin, cpuTurn } from '$lib/cpu';
+	import { gameHistory } from '$lib/stores';
 	import Cell from './Cell.svelte';
 
 	export let state: string[] = Array(9).fill('');
 	export let playerTurn: boolean;
+	let isOver: boolean = false;
+	let usedCells = 0;
+	let winningLetter = '';
+
+	export function reset() {
+		state = Array(9).fill('');
+		usedCells = 0;
+		winningLetter = '';
+		playerTurn = true;
+
+		if (!isOver) {
+			gameHistory.update((gh) => {
+				gh.totalGames += 1;
+				gh.cpuWins += 1;
+
+				return gh;
+			});
+		}
+
+		isOver = false;
+	}
 
 	function handleClick(i: number) {
-		if (playerTurn) {
+		if (playerTurn && !isOver) {
 			state[i] = 'x';
-			playerTurn = false;
+			usedCells += 1;
+
+			if (usedCells == 9) {
+				isOver = true;
+			}
+
+			let testOutcome = winTest();
+			if (!testOutcome && !isOver) {
+				playerTurn = false;
+				let played = cpuTurn(state);
+				if (played) {
+					usedCells += 1;
+				}
+				if (usedCells == 9) {
+					isOver = true;
+				}
+				testOutcome = winTest();
+				console.log('testOutcome', testOutcome, 'isOver', isOver, 'usedCells', usedCells);
+				if (!testOutcome) {
+					playerTurn = true;
+				}
+			}
 		}
+	}
+
+	function winTest(): boolean {
+		let winner = checkForWin(state);
+		if (winner != '') {
+			isOver = true;
+			winningLetter = winner;
+		}
+		return isOver;
+	}
+
+	$: if (isOver) {
+		gameHistory.update((gh) => {
+			gh.totalGames += 1;
+			if (winningLetter == 'x') {
+				gh.wins += 1;
+			} else if (winningLetter == 'o') {
+				gh.cpuWins += 1;
+			}
+
+			return gh;
+		});
 	}
 </script>
 

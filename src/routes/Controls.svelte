@@ -2,8 +2,11 @@
 	import AlphaO from 'svelte-material-icons/AlphaO.svelte';
 	import AlphaX from 'svelte-material-icons/AlphaX.svelte';
 	import Refresh from 'svelte-material-icons/Refresh.svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	export let playerTurn: boolean;
+
+	const dispatch = createEventDispatcher();
 </script>
 
 <div class="control-wrapper">
@@ -18,7 +21,9 @@
 			<AlphaO size="2em" color="rgba(163,191,202,255)" />
 		{/if} TURN
 	</span>
-	<button class="btn restart"> <Refresh size="1.5em" color="rgba(22,51,63,255)" /> </button>
+	<button class="restart-btn" on:click={() => dispatch('reset')}>
+		<Refresh size="1.5em" color="rgba(22,51,63,255)" />
+	</button>
 </div>
 
 <style>
@@ -35,13 +40,21 @@
 		text-align: left;
 	}
 
-	.restart {
+	.restart-btn {
 		background-color: rgba(163, 191, 202, 255);
 		width: 25px;
 		height: 25px;
 		border-radius: 5px;
 		box-shadow: 0px 2px 0px rgba(105, 138, 149, 255);
 		flex-shrink: 0;
+		border: 0px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.restart-btn:active {
+		background-color: rgba(105, 138, 149, 255);
 	}
 
 	.turn {
@@ -50,13 +63,6 @@
 		border-radius: 5px;
 		height: 30px;
 		width: 90px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.btn {
-		border: 0px;
 		display: flex;
 		justify-content: center;
 		align-items: center;

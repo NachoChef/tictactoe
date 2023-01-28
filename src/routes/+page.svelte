@@ -4,11 +4,19 @@
 	import ScoreCard from './ScoreCard.svelte';
 
 	let playerTurn = true;
+
+	/**
+	 * @type {() => void}
+	 */
+	let reset;
+	function resetGame() {
+		reset();
+	}
 </script>
 
 <div class="page-wrapper">
-	<Controls {playerTurn} />
-	<GameGrid bind:playerTurn />
+	<Controls {playerTurn} on:reset={() => resetGame()} />
+	<GameGrid bind:playerTurn bind:reset />
 	<ScoreCard />
 </div>
 
