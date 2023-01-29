@@ -16,6 +16,8 @@
 		playerTurn = true;
 
 		if (!isOver) {
+			console.log('forfeit detected');
+
 			gameHistory.update((gh) => {
 				gh.totalGames += 1;
 				gh.cpuWins += 1;
@@ -47,7 +49,6 @@
 					isOver = true;
 				}
 				testOutcome = winTest();
-				console.log('testOutcome', testOutcome, 'isOver', isOver, 'usedCells', usedCells);
 				if (!testOutcome) {
 					playerTurn = true;
 				}
@@ -60,6 +61,7 @@
 		if (winner != '') {
 			isOver = true;
 			winningLetter = winner;
+			console.log('winner', winner);
 		}
 		return isOver;
 	}
@@ -67,12 +69,12 @@
 	$: if (isOver) {
 		gameHistory.update((gh) => {
 			gh.totalGames += 1;
+
 			if (winningLetter == 'x') {
 				gh.wins += 1;
 			} else if (winningLetter == 'o') {
 				gh.cpuWins += 1;
 			}
-
 			return gh;
 		});
 	}

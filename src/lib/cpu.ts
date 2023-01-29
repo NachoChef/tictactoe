@@ -2,8 +2,6 @@ export function cpuTurn(gameState: string[]): boolean {
 	let chosenIndex = randomIndex();
 	let guesses = 0;
 	while (gameState[chosenIndex] != '' && guesses < 9) {
-		console.log('reselecting');
-
 		chosenIndex = randomIndex();
 		guesses += 1;
 	}

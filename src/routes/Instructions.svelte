@@ -8,6 +8,7 @@
 			The reset button (top right) will restart the game for you, but if the game hasn't ended yet
 			it counts as a forfeit!
 		</li>
+		<li class="item">If nobody wins, it's a draw.</li>
 		<li class="item">It's seriously hard to lose to this CPU.</li>
 		<li class="item">I'm sorry the UI is a little janky.</li>
 	</ul>

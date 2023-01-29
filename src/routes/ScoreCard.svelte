@@ -12,7 +12,7 @@
 	/>
 	<LabeledValue
 		label="O (CPU)"
-		value={$gameHistory.totalGames - $gameHistory.wins}
+		value={$gameHistory.cpuWins}
 		style="--color: rgba(252,176,0,255);"
 	/>
 </div>
