@@ -2,6 +2,7 @@
 	import Footer from '$lib/Footer.svelte';
 	import Header from '$lib/Header.svelte';
 	import Modal from '$lib/Modal.svelte';
+	import Toast from '$lib/toast/Toast.svelte';
 	import Controls from './Controls.svelte';
 	import GameGrid from './GameGrid.svelte';
 	import Instructions from './Instructions.svelte';
@@ -28,6 +29,8 @@
 </div>
 
 <Footer />
+
+<Toast />
 
 <Modal bind:isModalOpen background={true}>
 	<Instructions />

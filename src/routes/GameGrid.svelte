@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { checkForWin, cpuTurn } from '$lib/cpu';
 	import { gameHistory } from '$lib/stores';
+	import { toast } from '$lib/toast/toast';
 	import Cell from './Cell.svelte';
 
 	export let state: string[] = Array(9).fill('');
@@ -30,7 +31,7 @@
 	}
 
 	function handleClick(i: number) {
-		if (playerTurn && !isOver) {
+		if (playerTurn && !isOver && state[i] == '') {
 			state[i] = 'x';
 			usedCells += 1;
 
@@ -71,9 +72,13 @@
 			gh.totalGames += 1;
 
 			if (winningLetter == 'x') {
+				toast.send('Player win!');
 				gh.wins += 1;
 			} else if (winningLetter == 'o') {
+				toast.send('CPU win!');
 				gh.cpuWins += 1;
+			} else {
+				toast.send('Draw!');
 			}
 			return gh;
 		});
