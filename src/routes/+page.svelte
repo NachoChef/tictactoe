@@ -1,10 +1,13 @@
 <script>
 	import Footer from '$lib/Footer.svelte';
 	import Header from '$lib/Header.svelte';
+	import Modal from '$lib/Modal.svelte';
 	import Controls from './Controls.svelte';
 	import GameGrid from './GameGrid.svelte';
+	import Instructions from './Instructions.svelte';
 	import ScoreCard from './ScoreCard.svelte';
 
+	let isModalOpen = true;
 	let playerTurn = true;
 
 	/**
@@ -25,6 +28,10 @@
 </div>
 
 <Footer />
+
+<Modal bind:isModalOpen background={true}>
+	<Instructions />
+</Modal>
 
 <style>
 	:global(body) {
