@@ -87,7 +87,7 @@
 
 <div class="grid-wrapper">
 	{#each state as cell, i}
-		<Cell on:click={() => handleClick(i)} value={cell} />
+		<Cell on:click={() => handleClick(i)} value={cell} disabled={isOver} />
 	{/each}
 </div>
 

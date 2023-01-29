@@ -2,9 +2,10 @@
 	import AlphaX from 'svelte-material-icons/AlphaX.svelte';
 	import AlphaO from 'svelte-material-icons/AlphaO.svelte';
 	export let value: String;
+	export let disabled: boolean = false;
 </script>
 
-<div class="cell" on:click>
+<div class="cell" on:click class:disabled>
 	{#if value == 'x'}
 		<AlphaX size="2em" />
 	{:else if value == 'o'}
@@ -24,5 +25,9 @@
 		justify-content: center;
 		font-size: 3rem;
 		color: lightgrey;
+	}
+
+	.disabled {
+		opacity: 50%;
 	}
 </style>
